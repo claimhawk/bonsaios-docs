@@ -11,7 +11,7 @@ title: "BonsaiOS"
 
 <p align="center">
     <img
-        src="/assets/bonsai-logo.svg"
+        src="/assets/bonsai-logo.png"
         alt="BonsaiOS"
         width="120"
     />
