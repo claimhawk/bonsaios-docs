@@ -5,13 +5,13 @@ read_when:
 title: "BonsaiOS"
 ---
 
-# BonsaiOS 🌳
+# BonsaiOS
 
 > _Stop chatting. Start shipping._
 
 <p align="center">
     <img
-        src="/assets/bonsai-logo.png"
+        src="/bonsaios-docs/assets/bonsai-logo.png"
         alt="BonsaiOS"
         width="120"
     />
