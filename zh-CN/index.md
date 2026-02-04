@@ -20,16 +20,9 @@ x-i18n:
 
 <p align="center">
     <img
-        src="/assets/bonsaios-logo-text-dark.png"
+        src="/assets/bonsai-logo.svg"
         alt="BonsaiOS"
-        width="500"
-        class="dark:hidden"
-    />
-    <img
-        src="/assets/bonsaios-logo-text.png"
-        alt="BonsaiOS"
-        width="500"
-        class="hidden dark:block"
+        width="120"
     />
 </p>
 

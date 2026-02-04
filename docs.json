@@ -3,12 +3,12 @@
   "name": "BonsaiOS",
   "theme": "mint",
   "logo": {
-    "light": "/assets/pixel-bonsai.svg",
-    "dark": "/assets/pixel-bonsai.svg"
+    "light": "/assets/bonsai-logo.svg",
+    "dark": "/assets/bonsai-logo.svg"
   },
-  "favicon": "/assets/pixel-bonsai.svg",
+  "favicon": "/assets/bonsai-logo.svg",
   "colors": {
-    "primary": "#FF5A36"
+    "primary": "#4A8B5C"
   },
   "topbarLinks": [
     {

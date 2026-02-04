@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="BonsaiOS bonsai tree">
+  <!-- Pot -->
+  <path d="M20 52 L44 52 L42 58 L22 58 Z" fill="#8B6F47" stroke="#6B5235" stroke-width="1"/>
+  <rect x="18" y="50" width="28" height="3" rx="1" fill="#A0845C" stroke="#6B5235" stroke-width="0.8"/>
+
+  <!-- Trunk -->
+  <path d="M30 50 C30 44 28 40 27 36 C26 32 28 28 32 24 C34 28 36 32 35 36 C34 40 32 44 32 50" fill="#8B6F47" stroke="#6B5235" stroke-width="0.8"/>
+  
+  <!-- Main branch left -->
+  <path d="M29 34 C24 30 18 28 16 26" fill="none" stroke="#8B6F47" stroke-width="2.2" stroke-linecap="round"/>
+  
+  <!-- Main branch right -->
+  <path d="M33 30 C38 26 42 26 44 24" fill="none" stroke="#8B6F47" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Small branch upper left -->
+  <path d="M28 28 C24 24 22 22 20 20" fill="none" stroke="#8B6F47" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Foliage clusters — organic blobs -->
+  <!-- Top canopy -->
+  <ellipse cx="32" cy="18" rx="10" ry="8" fill="#4A8B5C" opacity="0.85"/>
+  <ellipse cx="28" cy="16" rx="7" ry="6" fill="#5A9E6B" opacity="0.8"/>
+  <ellipse cx="36" cy="16" rx="6" ry="5.5" fill="#3D7A4E" opacity="0.8"/>
+  <ellipse cx="32" cy="12" rx="6" ry="5" fill="#6BAF7C" opacity="0.75"/>
+  
+  <!-- Left canopy -->
+  <ellipse cx="18" cy="24" rx="7" ry="5.5" fill="#4A8B5C" opacity="0.85"/>
+  <ellipse cx="15" cy="22" rx="5" ry="4" fill="#5A9E6B" opacity="0.75"/>
+  <ellipse cx="20" cy="20" rx="5.5" ry="4.5" fill="#3D7A4E" opacity="0.8"/>
+
+  <!-- Right canopy -->
+  <ellipse cx="44" cy="22" rx="6" ry="5" fill="#4A8B5C" opacity="0.85"/>
+  <ellipse cx="46" cy="20" rx="4.5" ry="3.5" fill="#5A9E6B" opacity="0.75"/>
+  <ellipse cx="42" cy="19" rx="5" ry="4" fill="#6BAF7C" opacity="0.78"/>
+
+  <!-- Accent highlights on foliage -->
+  <ellipse cx="30" cy="10" rx="3" ry="2.5" fill="#8CC99A" opacity="0.5"/>
+  <ellipse cx="16" cy="21" rx="2.5" ry="2" fill="#8CC99A" opacity="0.45"/>
+  <ellipse cx="44" cy="19" rx="2" ry="1.8" fill="#8CC99A" opacity="0.45"/>
+</svg>

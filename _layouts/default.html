@@ -11,9 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Fragment+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/svg+xml" href="{{ "/assets/bonsai-logo.svg" | relative_url }}" />
     <script>
       (() => {
         try {
@@ -35,29 +36,27 @@
     <header class="shell">
       <div class="shell__frame" role="banner">
         <div class="shell__titlebar">
-          <div class="brand" aria-label="BonsaiOS docs terminal">
+          <div class="brand" aria-label="BonsaiOS documentation">
             <img
               class="brand__logo"
-              src="{{ "/assets/pixel-bonsai.svg" | relative_url }}"
-              alt=""
-              width="40"
-              height="40"
+              src="{{ "/assets/bonsai-logo.svg" | relative_url }}"
+              alt="BonsaiOS"
+              width="36"
+              height="36"
               decoding="async"
             />
             <div class="brand__text">
               <div class="brand__name">BonsaiOS</div>
-              <div class="brand__hint">docs // bonsai terminal</div>
+              <div class="brand__hint">documentation</div>
             </div>
           </div>
 
           <div class="titlebar__actions">
             <a class="titlebar__cta" href="https://github.com/claimhawk/bonsaios-docs">
               <span class="titlebar__cta-label">GitHub</span>
-              <span class="titlebar__cta-meta">repo</span>
             </a>
             <a class="titlebar__cta titlebar__cta--accent" href="https://github.com/claimhawk/bonsaios-docs/releases/latest">
               <span class="titlebar__cta-label">Download</span>
-              <span class="titlebar__cta-meta">latest</span>
             </a>
           </div>
         </div>
@@ -68,20 +67,13 @@
             {% for item in nav %}
               {% assign item_url = item.url | relative_url %}
               <a class="nav__link" href="{{ item_url }}">
-                <span class="nav__chev">›</span>{{ item.title }}
+                <span class="nav__chev">›</span> {{ item.title }}
               </a>
             {% endfor %}
           </nav>
 
           <div class="shell__status" aria-hidden="true">
             <span class="status__dot"></span>
-            <span class="status__text">
-              {% if page.url == "/" %}
-                ready
-              {% else %}
-                viewing: {{ page.path }}
-              {% endif %}
-            </span>
           </div>
         </div>
       </div>
@@ -90,8 +82,9 @@
     <main id="content" class="content" role="main">
       <div class="terminal">
         <div class="terminal__prompt" aria-hidden="true">
-          <span class="prompt__user">bonsaios</span>@<span class="prompt__host">bonsaios</span>:<span class="prompt__path">~/docs</span>$<span class="prompt__cmd">
-            {% if page.url == "/" %}cat index.md{% else %}less {{ page.path }}{% endif %}
+          <span class="prompt__path">~/docs</span> ›
+          <span class="prompt__cmd">
+            {% if page.url == "/" %}index{% else %}{{ page.path | replace: ".md", "" }}{% endif %}
           </span>
         </div>
 
@@ -116,30 +109,31 @@
 
         <footer class="terminal__footer" role="contentinfo">
           <div class="footer__line">
-            <span class="footer__sig">bonsaios.com</span>
+            <span class="footer__sig">🌳 BonsaiOS</span>
+            <span class="footer__sep">·</span>
+            <a href="https://bonsaios.com">bonsaios.com</a>
             <span class="footer__sep">·</span>
             <a href="https://github.com/claimhawk/bonsaios-docs">source</a>
             <span class="footer__sep">·</span>
             <a href="https://github.com/claimhawk/bonsaios-docs/releases">releases</a>
           </div>
           <div class="footer__hint" aria-hidden="true">
-            tip: press <kbd>F2</kbd> (Mac: <kbd>fn</kbd>+<kbd>F2</kbd>) to flip
-            the universe
+            press <kbd>F2</kbd> to toggle theme
           </div>
           <div class="footer__actions">
             <button
               class="theme-toggle"
               type="button"
               data-theme-toggle
-              aria-label="Toggle theme (F2; on Mac: fn+F2)"
+              aria-label="Toggle theme (F2)"
               aria-pressed="false"
             >
               <span class="theme-toggle__key">F2</span>
               <span class="theme-toggle__label" data-theme-label>theme</span>
             </button>
           </div>
-	        </footer>
-	      </div>
-	    </main>
-	  </body>
+        </footer>
+      </div>
+    </main>
+  </body>
 </html>
