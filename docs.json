@@ -3,16 +3,16 @@
   "name": "BonsaiOS",
   "theme": "mint",
   "logo": {
-    "light": "/assets/bonsai-logo.svg",
-    "dark": "/assets/bonsai-logo.svg"
+    "light": "/assets/bonsai-logo-light.png",
+    "dark": "/assets/bonsai-logo.png"
   },
-  "favicon": "/assets/bonsai-logo.svg",
+  "favicon": "/assets/bonsai-logo.png",
   "colors": {
     "primary": "#4A8B5C"
   },
   "topbarLinks": [
     {
-      "name": "中文",
+      "name": "\u4e2d\u6587",
       "url": "/zh-CN"
     },
     {
@@ -865,7 +865,11 @@
           },
           {
             "group": "Help",
-            "pages": ["help/index", "help/troubleshooting", "help/faq"]
+            "pages": [
+              "help/index",
+              "help/troubleshooting",
+              "help/faq"
+            ]
           },
           {
             "group": "Install & Updates",
@@ -998,7 +1002,13 @@
           },
           {
             "group": "Web & Interfaces",
-            "pages": ["web/index", "web/control-ui", "web/dashboard", "web/webchat", "tui"]
+            "pages": [
+              "web/index",
+              "web/control-ui",
+              "web/dashboard",
+              "web/webchat",
+              "tui"
+            ]
           },
           {
             "group": "Channels",
@@ -1176,7 +1186,11 @@
           },
           {
             "group": "Help",
-            "pages": ["zh-CN/help/index", "zh-CN/help/troubleshooting", "zh-CN/help/faq"]
+            "pages": [
+              "zh-CN/help/index",
+              "zh-CN/help/troubleshooting",
+              "zh-CN/help/faq"
+            ]
           },
           {
             "group": "Install & Updates",
