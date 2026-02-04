@@ -281,7 +281,7 @@ Preferred:
 
 - Keypair fingerprint (public key hash).
 
-## Cute slug (lobster‑themed)
+## Cute slug (bonsai‑themed)
 
 Human label only.
 

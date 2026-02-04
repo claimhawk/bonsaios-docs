@@ -113,7 +113,7 @@ Configure your agent for autonomous work:
 agents:
   list:
     - id: security-project
-      workspace: ~/projects/security/.openclaw
+      workspace: ~/projects/security/.bonsaios
       heartbeat:
         every: 30m
         activeHours:

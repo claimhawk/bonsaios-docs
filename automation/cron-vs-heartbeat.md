@@ -97,7 +97,7 @@ Cron jobs run at **exact times** and can run in isolated sessions without affect
 ### Cron example: Daily morning briefing
 
 ```bash
-openclaw cron add \
+bonsaios cron add \
   --name "Morning briefing" \
   --cron "0 7 * * *" \
   --tz "America/New_York" \
@@ -114,7 +114,7 @@ This runs at exactly 7:00 AM New York time, uses Opus for quality, and delivers 
 ### Cron example: One-shot reminder
 
 ```bash
-openclaw cron add \
+bonsaios cron add \
   --name "Meeting reminder" \
   --at "20m" \
   --session main \
@@ -173,21 +173,21 @@ The most efficient setup uses **both**:
 
 ```bash
 # Daily morning briefing at 7am
-openclaw cron add --name "Morning brief" --cron "0 7 * * *" --session isolated --message "..." --deliver
+bonsaios cron add --name "Morning brief" --cron "0 7 * * *" --session isolated --message "..." --deliver
 
 # Weekly project review on Mondays at 9am
-openclaw cron add --name "Weekly review" --cron "0 9 * * 1" --session isolated --message "..." --model opus
+bonsaios cron add --name "Weekly review" --cron "0 9 * * 1" --session isolated --message "..." --model opus
 
 # One-shot reminder
-openclaw cron add --name "Call back" --at "2h" --session main --system-event "Call back the client" --wake now
+bonsaios cron add --name "Call back" --at "2h" --session main --system-event "Call back the client" --wake now
 ```
 
-## Lobster: Deterministic workflows with approvals
+## Bonsai: Deterministic workflows with approvals
 
-Lobster is the workflow runtime for **multi-step tool pipelines** that need deterministic execution and explicit approvals.
+Bonsai is the workflow runtime for **multi-step tool pipelines** that need deterministic execution and explicit approvals.
 Use it when the task is more than a single agent turn, and you want a resumable workflow with human checkpoints.
 
-### When Lobster fits
+### When Bonsai fits
 
 - **Multi-step automation**: You need a fixed pipeline of tool calls, not a one-off prompt.
 - **Approval gates**: Side effects should pause until you approve, then resume.
@@ -196,19 +196,19 @@ Use it when the task is more than a single agent turn, and you want a resumable 
 ### How it pairs with heartbeat and cron
 
 - **Heartbeat/cron** decide _when_ a run happens.
-- **Lobster** defines _what steps_ happen once the run starts.
+- **Bonsai** defines _what steps_ happen once the run starts.
 
-For scheduled workflows, use cron or heartbeat to trigger an agent turn that calls Lobster.
-For ad-hoc workflows, call Lobster directly.
+For scheduled workflows, use cron or heartbeat to trigger an agent turn that calls Bonsai.
+For ad-hoc workflows, call Bonsai directly.
 
 ### Operational notes (from the code)
 
-- Lobster runs as a **local subprocess** (`lobster` CLI) in tool mode and returns a **JSON envelope**.
+- Bonsai runs as a **local subprocess** (`bonsai` CLI) in tool mode and returns a **JSON envelope**.
 - If the tool returns `needs_approval`, you resume with a `resumeToken` and `approve` flag.
-- The tool is an **optional plugin**; enable it additively via `tools.alsoAllow: ["lobster"]` (recommended).
-- If you pass `lobsterPath`, it must be an **absolute path**.
+- The tool is an **optional plugin**; enable it additively via `tools.alsoAllow: ["bonsai"]` (recommended).
+- If you pass `bonsaiPath`, it must be an **absolute path**.
 
-See [Lobster](/tools/lobster) for full usage and examples.
+See [Bonsai](/tools/bonsai) for full usage and examples.
 
 ## Main Session vs Isolated Session
 
@@ -231,7 +231,7 @@ Use `--session main` with `--system-event` when you want:
 - No separate isolated run
 
 ```bash
-openclaw cron add \
+bonsaios cron add \
   --name "Check project" \
   --every "4h" \
   --session main \
@@ -249,7 +249,7 @@ Use `--session isolated` when you want:
 - History that doesn't clutter main session
 
 ```bash
-openclaw cron add \
+bonsaios cron add \
   --name "Deep analysis" \
   --cron "0 6 * * 0" \
   --session isolated \

@@ -1,12 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "OpenClaw",
+  "name": "BonsaiOS",
   "theme": "mint",
   "logo": {
-    "light": "/assets/pixel-lobster.svg",
-    "dark": "/assets/pixel-lobster.svg"
+    "light": "/assets/pixel-bonsai.svg",
+    "dark": "/assets/pixel-bonsai.svg"
   },
-  "favicon": "/assets/pixel-lobster.svg",
+  "favicon": "/assets/pixel-bonsai.svg",
   "colors": {
     "primary": "#FF5A36"
   },
@@ -17,11 +17,11 @@
     },
     {
       "name": "GitHub",
-      "url": "https://github.com/openclaw/openclaw"
+      "url": "https://github.com/claimhawk/bonsaios-docs"
     },
     {
       "name": "Releases",
-      "url": "https://github.com/openclaw/openclaw/releases"
+      "url": "https://github.com/claimhawk/bonsaios-docs/releases"
     }
   ],
   "redirects": [
@@ -363,27 +363,27 @@
     },
     {
       "source": "/clawd",
-      "destination": "/start/openclaw"
+      "destination": "/start/bonsaios"
     },
     {
       "source": "/start/clawd",
-      "destination": "/start/openclaw"
+      "destination": "/start/bonsaios"
     },
     {
       "source": "/start/clawd/",
-      "destination": "/start/openclaw"
+      "destination": "/start/bonsaios"
     },
     {
-      "source": "/clawhub",
-      "destination": "/tools/clawhub"
+      "source": "/bonsaihub",
+      "destination": "/tools/bonsaihub"
     },
     {
       "source": "/clawdhub",
-      "destination": "/tools/clawhub"
+      "destination": "/tools/bonsaihub"
     },
     {
       "source": "/tools/clawdhub",
-      "destination": "/tools/clawhub"
+      "destination": "/tools/bonsaihub"
     },
     {
       "source": "/configuration",
@@ -856,7 +856,7 @@
               "start/wizard",
               "start/setup",
               "start/pairing",
-              "start/openclaw",
+              "start/bonsaios",
               "start/showcase",
               "start/hubs",
               "start/onboarding",
@@ -1058,7 +1058,7 @@
             "group": "Tools & Skills",
             "pages": [
               "tools/index",
-              "tools/lobster",
+              "tools/bonsai",
               "tools/llm-task",
               "plugin",
               "plugins/voice-call",
@@ -1079,7 +1079,7 @@
               "tools/reactions",
               "tools/skills",
               "tools/skills-config",
-              "tools/clawhub"
+              "tools/bonsaihub"
             ]
           },
           {
@@ -1167,7 +1167,7 @@
               "zh-CN/start/wizard",
               "zh-CN/start/setup",
               "zh-CN/start/pairing",
-              "zh-CN/start/openclaw",
+              "zh-CN/start/bonsaios",
               "zh-CN/start/showcase",
               "zh-CN/start/hubs",
               "zh-CN/start/onboarding",
@@ -1375,7 +1375,7 @@
             "group": "Tools & Skills",
             "pages": [
               "zh-CN/tools/index",
-              "zh-CN/tools/lobster",
+              "zh-CN/tools/bonsai",
               "zh-CN/tools/llm-task",
               "zh-CN/plugin",
               "zh-CN/plugins/voice-call",
@@ -1396,7 +1396,7 @@
               "zh-CN/tools/reactions",
               "zh-CN/tools/skills",
               "zh-CN/tools/skills-config",
-              "zh-CN/tools/clawhub"
+              "zh-CN/tools/bonsaihub"
             ]
           },
           {

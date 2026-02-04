@@ -1,4 +1,4 @@
-const THEME_STORAGE_KEY = "openclaw:theme";
+const THEME_STORAGE_KEY = "bonsaios:theme";
 
 function safeGet(key) {
   try {

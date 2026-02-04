@@ -14,14 +14,14 @@ x-i18n:
 
 # OpenAI Chat Completions (HTTP)
 
-OpenClaw 的 Gateway网关可以提供一个小型的兼容 OpenAI 的 Chat Completions 端点。
+BonsaiOS 的 Gateway网关可以提供一个小型的兼容 OpenAI 的 Chat Completions 端点。
 
 此端点**默认禁用**。请先在配置中启用它。
 
 - `POST /v1/chat/completions`
 - 与 Gateway网关使用相同端口（WS + HTTP 多路复用）：`http://<gateway-host>:<port>/v1/chat/completions`
 
-在底层，请求会作为普通的 Gateway网关智能体运行来执行（与 `openclaw agent` 相同的代码路径），因此路由/权限/配置与你的 Gateway网关保持一致。
+在底层，请求会作为普通的 Gateway网关智能体运行来执行（与 `bonsaios agent` 相同的代码路径），因此路由/权限/配置与你的 Gateway网关保持一致。
 
 ## 认证
 
@@ -31,23 +31,23 @@ OpenClaw 的 Gateway网关可以提供一个小型的兼容 OpenAI 的 Chat Comp
 
 注意：
 
-- 当 `gateway.auth.mode="token"` 时，使用 `gateway.auth.token`（或 `OPENCLAW_GATEWAY_TOKEN`）。
-- 当 `gateway.auth.mode="password"` 时，使用 `gateway.auth.password`（或 `OPENCLAW_GATEWAY_PASSWORD`）。
+- 当 `gateway.auth.mode="token"` 时，使用 `gateway.auth.token`（或 `BONSAIOS_GATEWAY_TOKEN`）。
+- 当 `gateway.auth.mode="password"` 时，使用 `gateway.auth.password`（或 `BONSAIOS_GATEWAY_PASSWORD`）。
 
 ## 选择智能体
 
 无需自定义请求头：在 OpenAI 的 `model` 字段中编码智能体 ID：
 
-- `model: "openclaw:<agentId>"`（示例：`"openclaw:main"`、`"openclaw:beta"`）
+- `model: "bonsaios:<agentId>"`（示例：`"bonsaios:main"`、`"bonsaios:beta"`）
 - `model: "agent:<agentId>"`（别名）
 
-或通过请求头指定特定的 OpenClaw 智能体：
+或通过请求头指定特定的 BonsaiOS 智能体：
 
-- `x-openclaw-agent-id: <agentId>`（默认值：`main`）
+- `x-bonsaios-agent-id: <agentId>`（默认值：`main`）
 
 高级用法：
 
-- `x-openclaw-session-key: <sessionKey>` 用于完全控制会话路由。
+- `x-bonsaios-session-key: <sessionKey>` 用于完全控制会话路由。
 
 ## 启用端点
 
@@ -103,9 +103,9 @@ OpenClaw 的 Gateway网关可以提供一个小型的兼容 OpenAI 的 Chat Comp
 curl -sS http://127.0.0.1:18789/v1/chat/completions \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \
-  -H 'x-openclaw-agent-id: main' \
+  -H 'x-bonsaios-agent-id: main' \
   -d '{
-    "model": "openclaw",
+    "model": "bonsaios",
     "messages": [{"role":"user","content":"hi"}]
   }'
 ```
@@ -116,9 +116,9 @@ curl -sS http://127.0.0.1:18789/v1/chat/completions \
 curl -N http://127.0.0.1:18789/v1/chat/completions \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \
-  -H 'x-openclaw-agent-id: main' \
+  -H 'x-bonsaios-agent-id: main' \
   -d '{
-    "model": "openclaw",
+    "model": "bonsaios",
     "stream": true,
     "messages": [{"role":"user","content":"hi"}]
   }'

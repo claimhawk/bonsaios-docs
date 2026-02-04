@@ -1,7 +1,7 @@
 ---
 read_when:
-  - 想要从终端搜索 OpenClaw 在线文档
-summary: "`openclaw docs` 的 CLI 参考（搜索在线文档索引）"
+  - 想要从终端搜索 BonsaiOS 在线文档
+summary: "`bonsaios docs` 的 CLI 参考（搜索在线文档索引）"
 title: docs
 x-i18n:
   generated_at: "2026-02-01T19:58:52Z"
@@ -12,11 +12,11 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw docs`
+# `bonsaios docs`
 
 搜索在线文档索引。
 
 ```bash
-openclaw docs browser extension
-openclaw docs sandbox allowHostControl
+bonsaios docs browser extension
+bonsaios docs sandbox allowHostControl
 ```
