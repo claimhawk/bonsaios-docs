@@ -1,5 +1,5 @@
 ---
-summary: "Top-level overview of BonsaiOS, features, and purpose"
+summary: "Top-level overview of BonsaiOS — the agentic operating system for building projects"
 read_when:
   - Introducing BonsaiOS to newcomers
 title: "BonsaiOS"
@@ -7,7 +7,7 @@ title: "BonsaiOS"
 
 # BonsaiOS 🌳
 
-> _"CULTIVATE! CULTIVATE!"_ — A space bonsai, probably
+> _Stop chatting. Start shipping._
 
 <p align="center">
     <img
@@ -18,233 +18,148 @@ title: "BonsaiOS"
 </p>
 
 <p align="center">
-  <strong>Any OS + WhatsApp/Telegram/Discord/iMessage gateway for AI agents (Pi).</strong><br />
-  Plugins add Mattermost and more.
-  Send a message, get an agent response — from your pocket.
+  <strong>The agentic operating system for building projects.</strong><br />
+  Kanban boards. Autonomous agents. Real deployments.
 </p>
 
 <p align="center">
   <a href="https://github.com/claimhawk/bonsaios-docs">GitHub</a> ·
   <a href="https://github.com/claimhawk/bonsaios-docs/releases">Releases</a> ·
   <a href="/">Docs</a> ·
-  <a href="/start/bonsaios">BonsaiOS assistant setup</a>
+  <a href="/start/getting-started">Get Started</a>
 </p>
 
-BonsaiOS bridges WhatsApp (via WhatsApp Web / Baileys), Telegram (Bot API / grammY), Discord (Bot API / channels.discord.js), and iMessage (imsg CLI) to coding agents like [Pi](https://github.com/badlogic/pi-mono). Plugins add Mattermost (Bot API + WebSocket) and more.
-BonsaiOS also powers the BonsaiOS assistant.
+## What is BonsaiOS?
 
-## Start here
+BonsaiOS is an agentic operating system that replaces endless chat threads with **project-based kanban boards**. Instead of talking _at_ your AI agent in an infinite conversation, you communicate through **stories** on a board — just like a real engineering team.
 
-- **New install from zero:** [Getting Started](/start/getting-started)
-- **Guided setup (recommended):** [Wizard](/start/wizard) (`bonsaios onboard`)
-- **Open the dashboard (local Gateway):** http://127.0.0.1:18789/ (or http://localhost:18789/)
+Write a story. The agent researches it, builds a plan, and presents it for your approval. Accept the plan, and the agent writes the code, runs the tests, and deploys — all autonomously.
 
-If the Gateway is running on the same computer, that link opens the browser Control UI
-immediately. If it fails, start the Gateway first: `bonsaios gateway`.
-
-## Dashboard (browser Control UI)
-
-The dashboard is the browser Control UI for chat, config, nodes, sessions, and more.
-Local default: http://127.0.0.1:18789/
-Remote access: [Web surfaces](/web) and [Tailscale](/gateway/tailscale)
-
-<p align="center">
-  <img src="whatsapp-bonsaios.jpg" alt="BonsaiOS" width="420" />
-</p>
+**It's OpenClaw meets project management.**
 
 ## How it works
 
 ```
-WhatsApp / Telegram / Discord / iMessage (+ plugins)
+You write a story on the board
         │
         ▼
   ┌───────────────────────────┐
-  │          Gateway          │  ws://127.0.0.1:18789 (loopback-only)
-  │     (single source)       │
-  │                           │  http://<gateway-host>:18793
-  │                           │    /__bonsaios__/canvas/ (Canvas host)
+  │     Backlog               │  Agent picks up the story
+  │     → Research phase      │  Explores codebase, produces research doc
+  │     → You review          │  Accept or reject with feedback
   └───────────┬───────────────┘
               │
-              ├─ Pi agent (RPC)
-              ├─ CLI (bonsaios …)
-              ├─ Chat UI (SwiftUI)
-              ├─ macOS app (BonsaiOS.app)
-              ├─ iOS node via Gateway WS + pairing
-              └─ Android node via Gateway WS + pairing
+              ▼
+  ┌───────────────────────────┐
+  │     In Progress           │  Agent writes code in isolated worktree
+  │     → Implementation      │  Uses git branch, runs tests
+  │     → Moves to Review     │  Signals completion
+  └───────────┬───────────────┘
+              │
+              ▼
+  ┌───────────────────────────┐
+  │     Review                │  You verify the work
+  │     → Accept → Done       │  Ship it
+  │     → Reject → Rework     │  Agent fixes based on your feedback
+  └───────────────────────────┘
 ```
 
-Most operations flow through the **Gateway** (`bonsaios gateway`), a single long-running process that owns channel connections and the WebSocket control plane.
+Each story lives in its own **isolated context** — its own git branch, worktree, research documents, and implementation logs. No more scrolling through thousands of messages to find what the agent did.
 
-## Network model
+## Key concepts
 
-- **One Gateway per host (recommended)**: it is the only process allowed to own the WhatsApp Web session. If you need a rescue bot or strict isolation, run multiple gateways with isolated profiles and ports; see [Multiple gateways](/gateway/multiple-gateways).
-- **Loopback-first**: Gateway WS defaults to `ws://127.0.0.1:18789`.
-  - The wizard now generates a gateway token by default (even for loopback).
-  - For Tailnet access, run `bonsaios gateway --bind tailnet --token ...` (token is required for non-loopback binds).
-- **Nodes**: connect to the Gateway WebSocket (LAN/tailnet/SSH as needed); legacy TCP bridge is deprecated/removed.
-- **Canvas host**: HTTP file server on `canvasHost.port` (default `18793`), serving `/__bonsaios__/canvas/` for node WebViews; see [Gateway configuration](/gateway/configuration) (`canvasHost`).
-- **Remote use**: SSH tunnel or tailnet/VPN; see [Remote access](/gateway/remote) and [Discovery](/gateway/discovery).
+- **Stories, not chats** — Define work as tickets on a kanban board. Each story has intent, acceptance criteria, artifacts, and comments.
+- **Autonomous agents** — Agents pick up stories, research the codebase, plan the approach, and implement the solution without constant hand-holding.
+- **Human-gated transitions** — You stay in control. Agents can't move work forward without your approval at key checkpoints.
+- **Isolated contexts** — Every story gets its own git branch and worktree. No cross-contamination between tasks.
+- **Artifacts** — Research plans, implementation logs, and other documents are attached to stories as reviewable artifacts.
 
-## Features (high level)
+## The dashboard
 
-- 📱 **WhatsApp Integration** — Uses Baileys for WhatsApp Web protocol
-- ✈️ **Telegram Bot** — DMs + groups via grammY
-- 🎮 **Discord Bot** — DMs + guild channels via channels.discord.js
-- 🧩 **Mattermost Bot (plugin)** — Bot token + WebSocket events
-- 💬 **iMessage** — Local imsg CLI integration (macOS)
-- 🤖 **Agent bridge** — Pi (RPC mode) with tool streaming
-- ⏱️ **Streaming + chunking** — Block streaming + Telegram draft streaming details ([/concepts/streaming](/concepts/streaming))
-- 🧠 **Multi-agent routing** — Route provider accounts/peers to isolated agents (workspace + per-agent sessions)
-- 🔐 **Subscription auth** — Anthropic (Claude Pro/Max) + OpenAI (ChatGPT/Codex) via OAuth
-- 💬 **Sessions** — Direct chats collapse into shared `main` (default); groups are isolated
-- 👥 **Group Chat Support** — Mention-based by default; owner can toggle `/activation always|mention`
-- 📎 **Media Support** — Send and receive images, audio, documents
-- 🎤 **Voice notes** — Optional transcription hook
-- 🖥️ **WebChat + macOS app** — Local UI + menu bar companion for ops and voice wake
-- 📱 **iOS node** — Pairs as a node and exposes a Canvas surface
-- 📱 **Android node** — Pairs as a node and exposes Canvas + Chat + Camera
+The dashboard is the control center for your projects. It includes the kanban board, chat, agent sessions, cron jobs, and configuration.
 
-Note: legacy Claude/Codex/Gemini/Opencode paths have been removed; Pi is the only coding-agent path.
+Local default: http://127.0.0.1:18789/
+
+Click any story card to see its full details — intent, artifacts, agent session logs, and comments. Drag cards between columns to manage workflow.
 
 ## Quick start
 
 Runtime requirement: **Node ≥ 22**.
 
 ```bash
-# Recommended: global install (npm/pnpm)
+# Install globally
 npm install -g bonsaios@latest
-# or: pnpm add -g bonsaios@latest
 
-# Onboard + install the service (launchd/systemd user service)
+# Onboard and start the gateway
 bonsaios onboard --install-daemon
 
-# Pair WhatsApp Web (shows QR)
-bonsaios channels login
-
-# Gateway runs via the service after onboarding; manual run is still possible:
-bonsaios gateway --port 18789
+# Open the dashboard
+open http://127.0.0.1:18789/
 ```
 
-Switching between npm and git installs later is easy: install the other flavor and run `bonsaios doctor` to update the gateway service entrypoint.
+The gateway runs as a background service. The dashboard opens in your browser where you can create your first project board and start writing stories.
 
-From source (development):
+- **New install from zero:** [Getting Started](/start/getting-started)
+- **Guided setup (recommended):** [Wizard](/start/wizard) (`bonsaios onboard`)
+
+## Built on OpenClaw
+
+BonsaiOS is built on top of [OpenClaw](https://github.com/openclaw/openclaw), inheriting its messaging infrastructure. All OpenClaw features are available — WhatsApp, Telegram, Discord, iMessage, and plugin channels. BonsaiOS adds the project management layer on top.
+
+### Messaging channels
+
+- 📱 **WhatsApp** — Via WhatsApp Web / Baileys
+- ✈️ **Telegram** — DMs + groups via Bot API
+- 🎮 **Discord** — DMs + guild channels
+- 💬 **iMessage** — macOS local integration
+- 🧩 **Plugins** — Mattermost, Matrix, and more
+
+### Platform support
+
+- 🖥️ **macOS app** — Menu bar companion with voice wake
+- 📱 **iOS & Android** — Mobile nodes with Canvas surfaces
+- 🌐 **WebChat** — Browser-based dashboard and chat
+- 🔧 **CLI** — Full command-line control (`bonsaios ...`)
+
+## Architecture
+
+```
+  ┌───────────────────────────┐
+  │       Dashboard           │  Board + Chat + Config
+  │     (Browser UI)          │
+  └───────────┬───────────────┘
+              │ WebSocket
+              ▼
+  ┌───────────────────────────┐
+  │          Gateway          │  ws://127.0.0.1:18789
+  │                           │
+  │  Board ←→ Cron ←→ Agents  │  5-minute orchestrator cycle
+  │  Queue ←→ Workers          │  Isolated agent sessions
+  │                           │
+  │  Channels (WhatsApp, etc) │  Messaging bridge
+  └───────────────────────────┘
+              │
+              ├─ Pi agent (RPC)
+              ├─ CLI
+              ├─ Mobile nodes
+              └─ Canvas host
+```
+
+The **Gateway** is the single long-running process that manages everything — the board, agent orchestration, channel connections, and the WebSocket control plane.
+
+## Network model
+
+- **One Gateway per host (recommended)**: owns the WhatsApp Web session and board state. For isolation, run multiple gateways with separate profiles and ports.
+- **Loopback-first**: Gateway defaults to `ws://127.0.0.1:18789` with token auth.
+- **Remote access**: SSH tunnel or Tailnet; see [Remote access](/gateway/remote).
+
+## From source (development)
 
 ```bash
 git clone https://github.com/claimhawk/bonsaios-docs.git
 cd bonsaios
 pnpm install
-pnpm ui:build # auto-installs UI deps on first run
+pnpm ui:build
 pnpm build
 bonsaios onboard --install-daemon
 ```
-
-If you don’t have a global install yet, run the onboarding step via `pnpm bonsaios ...` from the repo.
-
-Multi-instance quickstart (optional):
-
-```bash
-BONSAIOS_CONFIG_PATH=~/.bonsaios/a.json \
-BONSAIOS_STATE_DIR=~/.bonsaios-a \
-bonsaios gateway --port 19001
-```
-
-Send a test message (requires a running Gateway):
-
-```bash
-bonsaios message send --target +15555550123 --message "Hello from BonsaiOS"
-```
-
-## Configuration (optional)
-
-Config lives at `~/.bonsaios/bonsaios.json`.
-
-- If you **do nothing**, BonsaiOS uses the bundled Pi binary in RPC mode with per-sender sessions.
-- If you want to lock it down, start with `channels.whatsapp.allowFrom` and (for groups) mention rules.
-
-Example:
-
-```json5
-{
-  channels: {
-    whatsapp: {
-      allowFrom: ["+15555550123"],
-      groups: { "*": { requireMention: true } },
-    },
-  },
-  messages: { groupChat: { mentionPatterns: ["@bonsaios"] } },
-}
-```
-
-## Docs
-
-- Start here:
-  - [Docs hubs (all pages linked)](/start/hubs)
-  - [Help](/help) ← _common fixes + troubleshooting_
-  - [Configuration](/gateway/configuration)
-  - [Configuration examples](/gateway/configuration-examples)
-  - [Slash commands](/tools/slash-commands)
-  - [Multi-agent routing](/concepts/multi-agent)
-  - [Updating / rollback](/install/updating)
-  - [Pairing (DM + nodes)](/start/pairing)
-  - [Nix mode](/install/nix)
-  - [BonsaiOS assistant setup](/start/bonsaios)
-  - [Skills](/tools/skills)
-  - [Skills config](/tools/skills-config)
-  - [Workspace templates](/reference/templates/AGENTS)
-  - [RPC adapters](/reference/rpc)
-  - [Gateway runbook](/gateway)
-  - [Nodes (iOS/Android)](/nodes)
-  - [Web surfaces (Control UI)](/web)
-  - [Discovery + transports](/gateway/discovery)
-  - [Remote access](/gateway/remote)
-- Providers and UX:
-  - [WebChat](/web/webchat)
-  - [Control UI (browser)](/web/control-ui)
-  - [Telegram](/channels/telegram)
-  - [Discord](/channels/discord)
-  - [Mattermost (plugin)](/channels/mattermost)
-  - [iMessage](/channels/imessage)
-  - [Groups](/concepts/groups)
-  - [WhatsApp group messages](/concepts/group-messages)
-  - [Media: images](/nodes/images)
-  - [Media: audio](/nodes/audio)
-- Companion apps:
-  - [macOS app](/platforms/macos)
-  - [iOS app](/platforms/ios)
-  - [Android app](/platforms/android)
-  - [Windows (WSL2)](/platforms/windows)
-  - [Linux app](/platforms/linux)
-- Ops and safety:
-  - [Sessions](/concepts/session)
-  - [Cron jobs](/automation/cron-jobs)
-  - [Webhooks](/automation/webhook)
-  - [Gmail hooks (Pub/Sub)](/automation/gmail-pubsub)
-  - [Security](/gateway/security)
-  - [Troubleshooting](/gateway/troubleshooting)
-
-## The name
-
-**BonsaiOS = CLAW + TARDIS** — because every space bonsai needs a time-and-space machine.
-
----
-
-_"We're all just playing with our own prompts."_ — an AI, probably high on tokens
-
-## Credits
-
-- **Peter Steinberger** ([@steipete](https://x.com/steipete)) — Creator, bonsai whisperer
-- **Mario Zechner** ([@badlogicc](https://x.com/badlogicgames)) — Pi creator, security pen-tester
-- **Clawd** — The space bonsai who demanded a better name
-
-## Core Contributors
-
-- **Maxim Vovshin** (@Hyaxia, 36747317+Hyaxia@users.noreply.github.com) — Blogwatcher skill
-- **Nacho Iacovino** (@nachoiacovino, nacho.iacovino@gmail.com) — Location parsing (Telegram + WhatsApp)
-
-## License
-
-MIT — Free as a bonsai in the ocean 🌳
-
----
-
-_"We're all just playing with our own prompts."_ — An AI, probably high on tokens
